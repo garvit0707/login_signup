@@ -4,14 +4,24 @@ import SigninScreen from './SigninScreen';
 import Register from './Register';
 import Home from './Home';
 import Userpage from './Userpage';
+import HomeScreen from './HomeScreen';
+import { useColorScheme } from 'react-native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+  // const theme = useColorScheme();
   const [users, setUsers] = useState([]);
+  // console.log("the theme is ",theme)
 
   return (
-    <Stack.Navigator initialRouteName="Home">
+    // <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+    <Stack.Navigator initialRouteName='homescreen'>
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
       
       <Stack.Screen
@@ -31,7 +41,9 @@ const Navigation = () => {
       <Stack.Screen name = "Userpage" options={{headerShown:false}}>
         {(props) => <Userpage {...props} users = {users}/>}
       </Stack.Screen>
+      <Stack.Screen name='homescreen' component={HomeScreen} options={{headerShown:false}}/>
     </Stack.Navigator>
+  // </NavigationContainer>
   );
 };
 
